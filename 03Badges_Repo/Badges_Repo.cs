@@ -8,26 +8,44 @@ namespace _03Badges_Repo
 {
     public class Badges_Repo
     {
-        private readonly List<Badges> _badgeDirectory = new List<Badges>();
-        public bool AddBadge(Badges newBadge)
+        private readonly Dictionary<string, List<string>> _badgeDictionary = new Dictionary<string, List<string>>(); 
+        public bool AddBadge(Badge newBadge)
         {
-            int startingCount = _badgeDirectory.Count;
-            _badgeDirectory.Add(newBadge);
+            int startingCount = _badgeDictionary.Count;
+            _badgeDictionary.Add(newBadge.BadgeID, newBadge.DoorNames);
 
-            bool wasAdded = (_badgeDirectory.Count > startingCount) ? true : false;
+            bool wasAdded = (_badgeDictionary.Count > startingCount) ? true : false;
             return wasAdded;
         }
 
-        //public Dictionary<int, List<string>> _doorAccess = new Dictionary<int, List<string>>();
 
-
-        public List<Badges> GetBadge()
+        public Badge GetBadge(string badgeID)
         {
-            return _badgeDirectory;
+            var doorNames = _badgeDictionary[badgeID];
+            return new Badge()
+            {
+                BadgeID = badgeID,
+                DoorNames = doorNames
+            };
         }
 
-        //update badge access
+        public List<Badge> GetBadges()
+        {
+            var Badges = new List<Badge>();
+            foreach(var Badge in _badgeDictionary)
+            {
+                Badges.Add(new Badge()
+                {
+                    BadgeID = Badge.Key,
+                    DoorNames = Badge.Value
+                });
+            }
+            return Badges;
+        }
 
-        //delete badge access
+        public void UpdateBadge(Badge badge)
+        {
+            _badgeDictionary[badge.BadgeID] = badge.DoorNames;             
+        }
     }
 }

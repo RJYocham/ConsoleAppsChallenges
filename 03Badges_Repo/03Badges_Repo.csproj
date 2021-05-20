@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Badges.cs" />
+    <Compile Include="Badge.cs" />
     <Compile Include="Badges_Repo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

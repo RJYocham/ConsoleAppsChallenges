@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace _03Badges_Repo
 {
     public enum Doors { }
-    public class Badges
+    public class Badge
     {
-        public int BadgeID { get; set; }
+        public string BadgeID { get; set; }
 
-        //List<DoorAccess> DoorAccess { get; set; }
+        public List<string> DoorNames { get; set; }
 
-        public Badges() { }
-        public Badges(int badgeID)
+        public Badge() { }
+        public Badge(string badgeID)
         {
             BadgeID = badgeID;
 
