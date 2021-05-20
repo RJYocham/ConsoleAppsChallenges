@@ -19,7 +19,7 @@ namespace _02Claims_Repo
         { 
             get 
             {
-                Int difference = DateOfClaim.Subtract(DateOfIncident).TotalDays;
+                double difference = DateOfClaim.Subtract(DateOfIncident).TotalDays;
                 if(difference > 30)
                 {
                     return false;

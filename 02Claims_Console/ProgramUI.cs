@@ -49,7 +49,6 @@ namespace _02Claims_Console
                 }
             }
 
-
         }
 
         Queue claimsQueue = new Queue();
@@ -65,7 +64,7 @@ namespace _02Claims_Console
 
             foreach (Claims claim in allClaims)
             {
-                if(input == claim.ClaimID)
+                if (input == claim.ClaimID)
                 {
                     Console.WriteLine("This ID is already taken. Please choose a different ID");
                 }
@@ -87,29 +86,28 @@ namespace _02Claims_Console
             Console.WriteLine("How much is the claim for?");
             newClaim.ClaimAmount = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("What was the date of the incident? (yyyy/mm/dd)" );
+            Console.WriteLine("What was the date of the incident? (yyyy/mm/dd)");
             newClaim.DateOfIncident = DateTime.Parse(Console.ReadLine());
-            
 
             newClaim.DateOfClaim = DateTime.Today;
 
-            bool wasAddedCorrectly = _repo.AddClaim(newClaim);
-            if (wasAddedCorrectly)
+            bool isadded = _repo.AddClaim(newClaim);
+            if (isadded)
             {
-                Console.WriteLine("The claim was added correctly");
+                claimsQueue.Enqueue(newClaim);
+                Console.WriteLine("Claim was successfully added");
             }
             else
             {
-                Console.WriteLine("There was an error adding the claim.");
+                Console.WriteLine("Error adding claim.");
             }
         }
 
         public void DisplayAllClaims()
         {
             Console.Clear();
-            //List<Claims> allClaims = _repo.GetClaims();            
 
-            foreach(Claims claim in claimsQueue)
+            foreach (Claims claim in claimsQueue)
             {
                 Console.WriteLine($"{claim.ClaimID} {claim.ClaimType}\n" +
                     $"{claim.Description}\n" +
@@ -120,17 +118,22 @@ namespace _02Claims_Console
             }
         }
 
-        public void DisplayNextClaim()
+        public void DisplayNextClaim(Claims claim)
         {
             Console.Clear();
-            Console.WriteLine(claimsQueue);
+            Console.WriteLine($"{claim.ClaimID} {claim.ClaimType}\n" +
+                                $"{claim.Description}\n" +
+                                $"{claim.ClaimAmount}\n" +
+                                $"{claim.DateOfIncident} {claim.DateOfClaim}\n" +
+                                $"{claim.IsValid}\n" +
+                                $"");
         }
 
         public void ClaimQueueNext()
         {
             Console.Clear();
             //display next claim info by claim position
-            DisplayNextClaim();
+            DisplayNextClaim((Claims)claimsQueue.Peek());
 
             Console.WriteLine("Do you want to deal with this claim now? (y/n)");
             string input = Console.ReadLine();
@@ -151,9 +154,9 @@ namespace _02Claims_Console
 
 
         //premaidclaims add stuff! fix datetimes
-        private void SeedClaimsList() 
+        private void SeedClaimsList()
         {
-            Claims claimOne = new Claims(1, ClaimType.Car,"Car accident on 465.", 400, DateTime.Parse("2018,04,25"), DateTime.Parse("2018/04/27"));
+            Claims claimOne = new Claims(1, ClaimType.Car, "Car accident on 465.", 400, DateTime.Parse("2018,04,25"), DateTime.Parse("2018/04/27"));
             Claims claimTwo = new Claims(2, ClaimType.Home, "House fire in kitchen.", 4000, DateTime.Parse("2018/04/11"), DateTime.Parse("2018/04/12"));
             Claims claimThree = new Claims(3, ClaimType.Theft, "Stolen pancakes.", 4, DateTime.Parse("2018/04/27"), DateTime.Parse("2018/06/01"));
             claimsQueue.Enqueue(claimOne);
