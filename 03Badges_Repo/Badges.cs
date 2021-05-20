@@ -9,8 +9,17 @@ namespace _03Badges_Repo
     public enum Doors { }
     public class Badges
     {
-        int BadgeID { get; set; }
-        //List<DoorAccess> { get; set; }
+        public int BadgeID { get; set; }
 
+        //List<DoorAccess> DoorAccess { get; set; }
+
+        public Badges() { }
+        public Badges(int badgeID)
+        {
+            BadgeID = badgeID;
+
+        }
     }
+
+
 }

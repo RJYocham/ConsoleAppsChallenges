@@ -6,14 +6,28 @@ using System.Threading.Tasks;
 
 namespace _03Badges_Repo
 {
-    class Badges_Repo
+    public class Badges_Repo
     {
-        public void AddBadge()
+        private readonly List<Badges> _badgeDirectory = new List<Badges>();
+        public bool AddBadge(Badges newBadge)
         {
+            int startingCount = _badgeDirectory.Count;
+            _badgeDirectory.Add(newBadge);
 
+            bool wasAdded = (_badgeDirectory.Count > startingCount) ? true : false;
+            return wasAdded;
         }
 
-        //key for ditionary (badgeid)
-        //value for dictionary (list of door names)
+        //public Dictionary<int, List<string>> _doorAccess = new Dictionary<int, List<string>>();
+
+
+        public List<Badges> GetBadge()
+        {
+            return _badgeDirectory;
+        }
+
+        //update badge access
+
+        //delete badge access
     }
 }

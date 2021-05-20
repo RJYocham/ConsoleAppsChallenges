@@ -142,6 +142,7 @@ namespace _02Claims_Console
             {
                 case "y":
                     claimsQueue.Dequeue();
+                    Console.Clear();
                     break;
                 case "n":
                     Menu();
