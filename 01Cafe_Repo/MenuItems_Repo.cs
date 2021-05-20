@@ -10,9 +10,7 @@ namespace _01Cafe_Repo
     public class MenuItemsRepo
     {
         private readonly List<MenuItems> _menu = new List<MenuItems>();
-
-        //crud
-        //create
+                
         public bool AddItemsToMenu(MenuItems newItems)
         {
             int startingCount = _menu.Count;
@@ -22,8 +20,7 @@ namespace _01Cafe_Repo
             bool wasAdded = (_menu.Count > startingCount) ? true : false;
             return wasAdded;
         }
-
-        //read
+                
         public List<MenuItems> GetMenu()
         {
             return _menu;
@@ -40,8 +37,7 @@ namespace _01Cafe_Repo
             }
             return null;
         }
-
-        //update
+                
         public bool UpdateMenuItem(string originalInfo, MenuItems updatedInfo)
         {
             MenuItems oldInfo = GetMenuItemByName(originalInfo);
@@ -65,8 +61,7 @@ namespace _01Cafe_Repo
         {
             throw new NotImplementedException();
         }
-
-        //delete
+                
         public bool DeleteMenuItem(string nameToDelete)
         {
             MenuItems itemToDelete = GetMenuItemByName(nameToDelete);

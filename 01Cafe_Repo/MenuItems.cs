@@ -8,7 +8,6 @@ namespace _01Cafe_Repo
 {
     public class MenuItems
     {
-        int startingCount = 0;
         public int MealNumber { get; set; }
         public string MealName { get; set; }
         public string Description { get; set; }
