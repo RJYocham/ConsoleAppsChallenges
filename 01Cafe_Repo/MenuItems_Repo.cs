@@ -29,8 +29,56 @@ namespace _01Cafe_Repo
             return _menu;
         }
 
+        public MenuItems GetMenuItemByName(string Name)
+        {
+            foreach (MenuItems item in _menu)
+            {
+                if(item.MealName.ToLower() == Name.ToLower())
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
         //update
+        public bool UpdateMenuItem(string originalInfo, MenuItems updatedInfo)
+        {
+            MenuItems oldInfo = GetMenuItemByName(originalInfo);
+
+            if(oldInfo != null)
+            {
+                oldInfo.MealName = updatedInfo.MealName;
+                oldInfo.Description = updatedInfo.Description;
+                oldInfo.Ingredients = updatedInfo.Ingredients;
+                oldInfo.Price = updatedInfo.Price;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public MenuItems GetMenuItemByName(MenuItems item)
+        {
+            throw new NotImplementedException();
+        }
 
         //delete
+        public bool DeleteMenuItem(string nameToDelete)
+        {
+            MenuItems itemToDelete = GetMenuItemByName(nameToDelete);
+            if(itemToDelete == null)
+            {
+                return false;
+            }
+            else
+            {
+                _menu.Remove(itemToDelete);
+                return true;
+            }
+        }
     }
 }
